@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>Driver #{carsForDrivers.driver.name} cars:</h2>
+    <ol>
+        <ui:repeat value="#{carsForDrivers.driver.cars}" var="car">
+            <li>#{car.name}</li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText a:placeholder="name" value="#{carsForDrivers.carToCreate.name}" required="true" />
+        <h:commandButton value="Add car to the driver" action="#{carsForDrivers.createCar}" >
+            <f:param name="driverId" value="#{carsForDrivers.driver.id}" />
+        </h:commandButton>
+    </h:form>
+    <h:link outcome="index" value="Back to drivers page"/>
+</h:body>
+</html>
