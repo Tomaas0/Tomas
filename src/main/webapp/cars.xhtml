@@ -10,7 +10,7 @@
     <h2>Driver #{carsForDrivers.driver.name} cars:</h2>
     <ol>
         <ui:repeat value="#{carsForDrivers.driver.cars}" var="car">
-            <li>#{car.name}</li>
+            <li><h:link value="#{car.name}" outcome="car?carId=#{car.id}" /></li>
         </ui:repeat>
     </ol>
     <h:form>

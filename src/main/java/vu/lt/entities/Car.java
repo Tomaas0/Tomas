@@ -12,7 +12,8 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Car.findAll", query = "select c from Car as c")
+        @NamedQuery(name = "Car.findAll", query = "select c from Car as c"),
+        @NamedQuery(name = "Car.findFeatures", query = "select c.features from Car as c where c.id = :carid")
 })
 @Table(name = "CARS")
 @Getter @Setter
