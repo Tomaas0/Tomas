@@ -17,4 +17,8 @@ public class CarsDAO {
     public void persist(Car car){
         this.em.persist(car);
     }
+
+    public Car findOne(Integer id) {
+        return em.find(Car.class, id);
+    }
 }
