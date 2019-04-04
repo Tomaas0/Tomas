@@ -17,30 +17,29 @@ import java.util.List;
 import java.util.Map;
 
 @Model
-public class FeaturesForCars implements Serializable {
-
-    @Inject
-    private CarsDAO carsDAO;
+public class Features implements Serializable {
 
     @Inject
     private FeaturesDAO featuresDAO;
 
     @Getter @Setter
-    private List<Car> cars;
-
-    @Getter @Setter
     private Feature featureToCreate = new Feature();
 
+    @Getter
+    private List<Feature> allFeatures;
+
     @PostConstruct
-    public void init() {
-        Map<String, String> requestParameters =
-                FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        Integer carId = Integer.parseInt(requestParameters.get("carId"));
+    public void init(){
+        loadAllFeatures();
     }
 
     @Transactional
     public String createFeature() {
         featuresDAO.persist(featureToCreate);
-        return "index?faces-redirect=true";
+        return "features?faces-redirect=true";
+    }
+
+    private void loadAllFeatures(){
+        this.allFeatures = featuresDAO.loadAll();
     }
 }
