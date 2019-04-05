@@ -6,7 +6,7 @@
     <!-- H2 Database -->
     <Resource id="PlayersDataSource" type="DataSource">
         JdbcDriver = org.h2.Driver
-        JdbcUrl = jdbc:h2:~/h2database/PlayerDB;AUTO_SERVER=TRUE;
+        JdbcUrl = jdbc:h2:~/h2database/AutoDB;AUTO_SERVER=TRUE;
         UserName = as
         Password = as
         InitialSize = 1
