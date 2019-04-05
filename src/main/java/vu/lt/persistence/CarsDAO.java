@@ -20,6 +20,10 @@ public class CarsDAO {
         this.em.persist(car);
     }
 
+    public void merge(Car car){
+        this.em.merge(car);
+    }
+
     public Car findOne(Integer id) {
         return em.find(Car.class, id);
     }

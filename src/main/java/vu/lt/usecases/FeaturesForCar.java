@@ -25,10 +25,16 @@ public class FeaturesForCar implements Serializable {
     @Inject
     private FeaturesDAO featuresDAO;
 
-    @Getter @Setter
+    @Getter
     private Car car;
 
-    @Getter
+    @Getter @Setter
+    private Integer featureid;
+
+    @Getter @Setter
+    private Feature featureToAdd = new Feature();
+
+    @Getter @Setter
     private List<Feature> carFeatures;
 
     @Getter
@@ -44,12 +50,14 @@ public class FeaturesForCar implements Serializable {
         this.carFeatures = carsDAO.findOneCarFeatures(carId);
     }
 
-    /*@Transactional
+    @Transactional
     public String addFeature() {
-        carToCreate.setDriver(this.driver);
-        carsDAO.(carToCreate);
-        return "cars?faces-redirect=true&driverId=" + this.driver.getId();
-    }*/
+        this.featureToAdd = featuresDAO.findOne(featureid);
+        this.carFeatures.add(featureToAdd);
+        this.car.setFeatures(this.carFeatures);
+        carsDAO.merge(this.car);
+        return "car?faces-redirect=true&carId=" + this.car.getId();
+    }
 
     private void loadAllFeatures(){
         this.allFeatures = featuresDAO.loadAll();

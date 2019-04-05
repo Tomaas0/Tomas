@@ -14,10 +14,13 @@
         </ui:repeat>
     </ol>
     <h:form>
-        <h:selectOneMenu value="selectedFeature">
+        <h:selectOneMenu value="#{featuresForCar.featureid}">
             <f:selectItems value="#{featuresForCar.allFeatures}" var="feature"
                            itemLabel="#{feature.name}" itemValue="#{feature.id}" />
         </h:selectOneMenu>
+        <h:commandButton value="Add feature to the car" action="#{featuresForCar.addFeature}" >
+            <f:param name="carId" value="#{featuresForCar.car.id}" />
+        </h:commandButton>
     </h:form>
     <h:link outcome="cars?driverId=#{featuresForCar.car.driver.id}" value="Back"/>
 </h:body>

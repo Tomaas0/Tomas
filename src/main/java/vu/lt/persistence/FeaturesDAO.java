@@ -20,4 +20,8 @@ public class FeaturesDAO {
     public void persist(Feature feature){
         this.em.persist(feature);
     }
+
+    public Feature findOne(Integer id) {
+        return em.find(Feature.class, id);
+    }
 }
