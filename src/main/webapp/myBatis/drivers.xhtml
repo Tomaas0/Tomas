@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>Drivers:</h2>
+    <ol>
+        <ui:repeat value="#{driversMyBatis.allDrivers}" var="driver">
+            <li><h:link value="#{driver.name}" outcome="players?teamId=#{driver.id}" /></li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText value="#{driversMyBatis.driverToCreate.name}" required="true" />
+        <h:commandButton value="Add new team" action="#{driversMyBatis.createDriver}" />
+    </h:form>
+    <h:link value="Back to index" outcome="/index"/>
+</h:body>
+</html>
