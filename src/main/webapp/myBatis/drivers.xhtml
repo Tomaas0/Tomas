@@ -9,12 +9,12 @@
     <h2>Drivers:</h2>
     <ol>
         <ui:repeat value="#{driversMyBatis.allDrivers}" var="driver">
-            <li><h:link value="#{driver.name}" outcome="players?teamId=#{driver.id}" /></li>
+            <li><h:link value="#{driver.name}" outcome="cars?driverId=#{driver.id}" /></li>
         </ui:repeat>
     </ol>
     <h:form>
         <h:inputText value="#{driversMyBatis.driverToCreate.name}" required="true" />
-        <h:commandButton value="Add new team" action="#{driversMyBatis.createDriver}" />
+        <h:commandButton value="Add new driver" action="#{driversMyBatis.createDriver}" />
     </h:form>
     <h:link value="Back to index" outcome="/index"/>
 </h:body>

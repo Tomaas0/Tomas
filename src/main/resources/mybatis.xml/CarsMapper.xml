@@ -59,4 +59,9 @@
     select ID, NAME, DRIVER_ID
     from PUBLIC.CARS
   </select>
+  <select id="getCarsByDriversID" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ID, NAME, DRIVER_ID
+    from PUBLIC.CARS
+    where DRIVER_ID = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>
