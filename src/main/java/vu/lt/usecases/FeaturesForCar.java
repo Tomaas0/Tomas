@@ -9,14 +9,20 @@ import vu.lt.persistence.FeaturesDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
+import vu.lt.interceptors.LoggedInvocation;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
+import javax.persistence.OptimisticLockException;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.List;
 
-@Model
+@ViewScoped
+@Named
+@Getter @Setter
 public class FeaturesForCar implements Serializable {
 
     @Inject
@@ -57,6 +63,17 @@ public class FeaturesForCar implements Serializable {
         this.car.setFeatures(this.carFeatures);
         carsDAO.merge(this.car);
         return "car?faces-redirect=true&carId=" + this.car.getId();
+    }
+
+    @Transactional
+    @LoggedInvocation
+    public String updateLicensePlate() {
+        try{
+            carsDAO.merge(this.car);
+        } catch (OptimisticLockException e) {
+            return "/car.xhtml?faces-redirect=true&carId=" + this.car.getId() + "&error=optimistic-lock-exception";
+        }
+        return "cars.xhtml?driverId=" + this.car.getDriver().getId() + "&faces-redirect=true";
     }
 
     private void loadAllFeatures(){

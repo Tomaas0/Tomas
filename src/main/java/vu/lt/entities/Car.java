@@ -27,6 +27,9 @@ public class Car implements Serializable {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "LICENSE_PLATE")
+    private String licensePlate;
+
     @ManyToOne
     @JoinColumn(name="DRIVER_ID")
     private Driver driver;
@@ -34,6 +37,10 @@ public class Car implements Serializable {
     @ManyToMany
     @JoinTable(name="CAR_FEATURES")
     private List<Feature> features = new ArrayList<>();
+
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
 
     public Car() {
     }

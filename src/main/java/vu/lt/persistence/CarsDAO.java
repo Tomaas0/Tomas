@@ -24,9 +24,7 @@ public class CarsDAO {
         this.em.merge(car);
     }
 
-    public Car findOne(Integer id) {
-        return em.find(Car.class, id);
-    }
+    public Car findOne(Integer id) { return em.find(Car.class, id); }
 
     public List<Feature> findOneCarFeatures(Integer id) {
         Query query = em.createNamedQuery("Car.findFeatures").setParameter("carid", id);

@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 import vu.lt.entities.Car;
 import vu.lt.entities.Driver;
+import vu.lt.interceptors.LoggedInvocation;
 import vu.lt.persistence.CarsDAO;
 import vu.lt.persistence.DriversDAO;
 
@@ -39,6 +40,7 @@ public class CarsForDrivers implements Serializable {
     }
 
     @Transactional
+    @LoggedInvocation
     public String createCar() {
         carToCreate.setDriver(this.driver);
         carsDAO.persist(carToCreate);
