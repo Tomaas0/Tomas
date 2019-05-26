@@ -17,6 +17,12 @@
         </h:commandButton>
         <h:outputText value="Value was already modified by other user. If you want to override it - try again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
     </h:form>
+    <h:form>
+        <h:outputText value="#{generateLicensePlateForCar.licensePlateGenerationStatus}" />
+        <h:commandButton value="Generate license plate?" disabled="#{generateLicensePlateForCar.licensePlateGenerationRunning}" action="#{generateLicensePlateForCar.generateNewLicensePlate()}">
+            <f:param name="carId" value="#{featuresForCar.car.id}" />
+        </h:commandButton>
+    </h:form>
     <ol>
         <ui:repeat value="#{featuresForCar.carFeatures}" var="feature">
             <li> #{feature.name} </li>
